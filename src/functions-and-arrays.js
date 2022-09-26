@@ -1,41 +1,83 @@
 // Iteration #1: Find the maximum
-function maxOfTwoNumbers() {}
-
-
+function maxOfTwoNumbers(a,b) {
+  let ret = b;
+  if(a>b) ret = a;
+  return ret
+}
 
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
 
-function findLongestWord() {}
+function findLongestWord(a) {
+  if(a.length == 0) return null;
+  
+  let l = "";
+  a.map(el =>{
+    if(el.length > l.length) l = el;
+  })
 
-
+  return l;
+}
 
 // Iteration #3: Calculate the sum
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
-function sumNumbers() {}
-
-
+function sumNumbers(a){ 
+  let s = 0;
+  a.map(el => s+= el)
+  return s;
+}
 
 // Iteration #3.1 Bonus:
-function sum() {}
+function sum(a) {
+    let s = 0;
+    
+    a.map(el => { 
+      if (typeof el == "number" || typeof el ==  "boolean"){
+        s+= el;
+      }else if (typeof el == "string"){
+        s+= el.length;
+      }else{
+        throw new Error ("Unsupported data type sir or ma'am")
+      };
 
+    });
 
+    return s;
+}
 
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-function averageNumbers() {}
+function averageNumbers(a) {
+  let s = 0;
+  a.map(el => s+= el)
+  return a.length>0 ? s/a.length: null;
+}
 
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
-function averageWordLength() { }
+function averageWordLength(a) { 
+  let s = 0;
+  a.map(el => s+= el.length)
+  return a.length > 0 ? s/a.length: null;
+}
 
 // Bonus - Iteration #4.1
-function avg() {}
+function avg(a) {
+  let s = 0;
+  a.map(el => { 
+    if (typeof el == "number" || typeof el ==  "boolean"){
+      s+= el;
+    }else if (typeof el == "string"){
+      s+= el.length;
+    }
+  });
+  return a.length > 0 ? s/a.length: null;
+}
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -52,14 +94,20 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(a) {
+  const s = new Set();
+  a.map(el => s.add(el));
+  return a.length > 0 ? Array.from(s) : null;
+}
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(a, w) {
+  return a.length == 0 ? null : a.join("|").search(w) == -1 ? false : true;
+}
 
 
 
@@ -78,7 +126,9 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(a, w) {
+  return a.length == 0 ? 0 : [...a.join("|").matchAll(w)].length == null ? 0 : [...a.join("|").matchAll(w)].length ;
+}
 
 
 
@@ -106,8 +156,47 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(a) {
+  let g = 0;
+  
+  for (let i = 0; i < a[0].length-3; i ++ ){
+    for (let j= 0; j < a.length-3; j ++){
+      horizontal = a[i][j] * a[i][j+1] * a[i][j+2] * a[i][j+3]
+      vertical = a[i][j] * a[i+1][j] * a[i+2][j] * a[i+3][j]
+      
+      if (horizontal > g){
+        g = horizontal
+      }
+      if (vertical > g){
+        g = vertical
+      }
+      
+    }
+  }
+ return g
+}
 
+// BBonus - Iteration #8.2: Product of diagonals
+
+function greatestProductOfDiagonals(a) {
+  let g = 0;
+  
+  for (let i = 0; i < a[0].length-3; i ++ ){
+    for (let j= 0; j < a.length-3; j ++){
+      reverse = a[0].length-i - 1
+      diagonal = a[i][j]* a[i+1][j+1] * a[i+2][j+2] * a[i+3][j+3] /* diagonal así \ */
+      diagonalb = a[reverse][j]* a[reverse-1][j+1] * a[reverse-2][j+2] * a[reverse-3][j+3] /* diagonal así / */
+      if (diagonal > g){
+        g = diagonal
+      }
+      if (diagonalb > g){
+        g = diagonalb
+      }
+      
+    }
+  }
+ return g
+}
 
 
 
