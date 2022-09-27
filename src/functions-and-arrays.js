@@ -51,32 +51,19 @@ function sum(a) {
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
 function averageNumbers(a) {
-  let s = 0;
-  a.map(el => s+= el)
-  return a.length>0 ? s/a.length: null;
+  return a.length>0 ? sum(a)/a.length: null;
 }
-
 
 // Level 2: Array of strings
 const wordsArr = ['seat', 'correspond', 'linen', 'motif', 'hole', 'smell', 'smart', 'chaos', 'fuel', 'palace'];
 
 function averageWordLength(a) { 
-  let s = 0;
-  a.map(el => s+= el.length)
-  return a.length > 0 ? s/a.length: null;
+  return a.length > 0 ? sum(a)/a.length: null;
 }
 
 // Bonus - Iteration #4.1
 function avg(a) {
-  let s = 0;
-  a.map(el => { 
-    if (typeof el == "number" || typeof el ==  "boolean"){
-      s+= el;
-    }else if (typeof el == "string"){
-      s+= el.length;
-    }
-  });
-  return a.length > 0 ? s/a.length: null;
+  return a.length > 0 ? sum(a)/a.length: null;
 }
 
 // Iteration #5: Unique arrays
@@ -161,22 +148,17 @@ function greatestProduct(a) {
   
   for (let i = 0; i < a[0].length-3; i ++ ){
     for (let j= 0; j < a.length-3; j ++){
-      horizontal = a[i][j] * a[i][j+1] * a[i][j+2] * a[i][j+3]
-      vertical = a[i][j] * a[i+1][j] * a[i+2][j] * a[i+3][j]
+      horizontal = a[i][j] * a[i][j+1] * a[i][j+2] * a[i][j+3];
+      vertical = a[i][j] * a[i+1][j] * a[i+2][j] * a[i+3][j];
       
-      if (horizontal > g){
-        g = horizontal
-      }
-      if (vertical > g){
-        g = vertical
-      }
-      
+      if (horizontal > g) g = horizontal;
+      if (vertical > g) g = vertical;
     }
   }
  return g
 }
 
-// BBonus - Iteration #8.2: Product of diagonals
+// Bonus - Iteration #8.2: Product of diagonals
 
 function greatestProductOfDiagonals(a) {
   let g = 0;
